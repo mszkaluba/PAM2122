@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CheckYourEnglish</string>
+    <string name="nameLabel">Nazwa użytkownika</string>
+    <string name="letsPlay">Start</string>
+    <string name="word">Słowo</string>
+    <string name="translate">Wpisz słowo</string>
+    <string name="next">Następne</string>
+    <string name="finish">Zakończ</string>
+    <string name="back">Wróć do menu</string>
+    <string name="wordDescription">Przetłumacz słowo</string>
+    <string name="gramaDescription">Wpisz słowo w poprawnej formie</string>
+    <string name="answere">Odpowiedź</string>
+    <string name="results">Wynik</string>
+    <string name="chooseType">Wybeierz typ</string>
+</resources>
