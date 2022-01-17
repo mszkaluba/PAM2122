@@ -2,20 +2,23 @@ package com.project.checkyourenglish
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 
 class TranslateWordActivity : AppCompatActivity() {
     val words: Array<Word> = arrayOf(
-        Word("car", "samowchód"),
-        Word("red", "czerwony"),
-        Word("washing machine", "pralka"),
-        Word("translator", "tłumacz"),
-        Word("wallet", "portfel"),
+//        Word("car", "samowchód"),
+//        Word("red", "czerwony"),
+//        Word("washing machine", "pralka"),
+//        Word("translator", "tłumacz"),
+//        Word("wallet", "portfel"),
         Word("armchair", "fotel"),
         Word("backpack", "plecak"),
         Word("blue", "niebieski")
@@ -48,9 +51,18 @@ class TranslateWordActivity : AppCompatActivity() {
 
     val finishActivity = View.OnClickListener { view: View ->
         var answere: EditText = findViewById(R.id.translateValue)
+        val nick: TextView = findViewById(R.id.nick)
+        val dataBase = Room.databaseBuilder(applicationContext,
+            AppDataBase::class.java,"results").allowMainThreadQueries()
+            .build()
+
         if (index == words.size && !answere.text.toString().equals("")) {
             val finishWordActivity = Intent(this, FinishActivity::class.java)
             checkAnswere(words.size - 1, answere.text.toString())
+
+            val results = Results(nick.text.toString(), correctAnswere.toString(), wrongAnswere.toString())
+            dataBase.result().insertResults(results)
+            println(dataBase.result().getAll())
             finishWordActivity.putExtra("CORRECT_ANSWERE", correctAnswere.toString())
             finishWordActivity.putExtra("WRONG_ANSWERE", wrongAnswere.toString())
             startActivity(finishWordActivity)
